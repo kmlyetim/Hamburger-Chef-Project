@@ -1,0 +1,250 @@
+﻿@using HamburgerMenuProject.Models.Entities;
+@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";    
+}
+@model Order
+
+<style>
+    input[type=number] {
+        max-width: 2rem;
+    }
+</style>
+
+
+    <section class="h-100 h-custom" style="background-color: #d2c9ff;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <div class="col-lg-8">
+                                <div class="p-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-5">
+                                        <h3 class="fw-bold mb-0 text-black">Shopping Cart</h3>
+                                        <h7>@ViewBag.ItemCount Items Added</h7>
+                                    </div>
+
+                                    <hr class="my-4">
+                                    @foreach (var item in Model.Menus)
+                                    {
+
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img src="/images/@item.Photo"
+                                                 class="img-fluid rounded-3">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <h6 class="text-black mb-0">@item.Name</h6>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+
+                                                <form>
+                                                    <a asp-action="Decrease" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="menu" class="value-button" style="text-decoration:none">-</a>
+                                                    <input type="number" id="number" name="number" value="@item.Piece" />
+                                                    <a asp-action="Increase" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="menu" class="value-button" style="text-decoration:none">+</a>
+                                                </form>
+
+
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h6 class="mb-0">$@(item.Price * item.Piece)</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                <a asp-action="DeleteOrderItem" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="menu" class="text-muted"><i class="fas fa-times"></i></a>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @foreach (var item in Model.Hamburgers)
+                                    {
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img src="/images/@item.Photo"
+                                                 class="img-fluid rounded-3">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <h6 class="text-black mb-0">@item.Name</h6>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+
+                                                <form>
+                                                    <a asp-action="Decrease" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="hamburger" class="value-button" style="text-decoration:none">-</a>
+                                                    <input type="number" id="number" name="number" value="@item.Piece" />
+                                                    <a asp-action="Increase" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="hamburger" class="value-button" style="text-decoration:none">+</a>
+                                                </form>
+
+
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h6 class="mb-0">$@(item.Price * item.Piece)</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                <a asp-action="DeleteOrderItem" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="hamburger" class="text-muted"><i class="fas fa-times"></i></a>
+                                            </div>
+                                        </div>
+                                    }
+                                    @foreach (var item in Model.Desserts)
+                                    {
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img src="/images/@item.Photo"
+                                                 class="img-fluid rounded-3">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <h6 class="text-black mb-0">@item.Name</h6>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+
+                                                <form>
+                                                    <a asp-action="Decrease" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="dessert" class="value-button" style="text-decoration:none">-</a>
+                                                    <input type="number" id="number" name="number" value="@item.Piece" />
+                                                    <a asp-action="Increase" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="dessert" class="value-button" style="text-decoration:none">+</a>
+                                                </form>
+
+
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h6 class="mb-0">$@(item.Price * item.Piece)</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                <a asp-action="DeleteOrderItem" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="dessert" class="text-muted"><i class="fas fa-times"></i></a>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @foreach (var item in Model.Drinks)
+                                    {
+
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img src="/images/@item.Photo"
+                                                 class="img-fluid rounded-3">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <h6 class="text-black mb-0">@item.Name</h6>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+
+                                                <form>
+                                                    <a asp-action="Decrease" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="drink" class="value-button" style="text-decoration:none">-</a>
+                                                    <input type="number" id="number" name="number" value="@item.Piece" />
+                                                    <a asp-action="Increase" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="drink" class="value-button" style="text-decoration:none">+</a>
+                                                </form>
+
+
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h6 class="mb-0">$@(item.Price * item.Piece)</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                <a asp-action="DeleteOrderItem" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="drink" class="text-muted"><i class="fas fa-times"></i></a>
+                                            </div>
+                                        </div>
+
+                                    }
+                                    @foreach (var item in Model.Fries)
+                                    {
+
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img src="/images/@item.Photo"
+                                                 class="img-fluid rounded-3">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <h6 class="text-black mb-0">@item.Name</h6>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+
+                                                <form>
+                                                    <a asp-action="Decrease" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="fries" class="value-button" style="text-decoration:none">-</a>
+                                                    <input type="number" id="number" name="number" value="@item.Piece" />
+                                                    <a asp-action="Increase" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="fries" class="value-button" style="text-decoration:none">+</a>
+                                                </form>
+
+
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h6 class="mb-0">$@(item.Price * item.Piece)</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                <a asp-action="DeleteOrderItem" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="fries" class="text-muted"><i class="fas fa-times"></i></a>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @foreach (var item in Model.Sauces)
+                                    {
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img src="/images/@item.Photo"
+                                                 class="img-fluid rounded-3">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <h6 class="text-black mb-0">@item.Name</h6>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+
+                                                <form>
+                                                    <a asp-action="Decrease" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="sauce" class="value-button" style="text-decoration:none">-</a>
+                                                    <input type="number" id="number" name="number" value="@item.Piece" />
+                                                    <a asp-action="Increase" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="sauce" class="value-button" style="text-decoration:none">+</a>
+                                                </form>
+
+
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h6 class="mb-0">$@(item.Price * item.Piece)</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                <a asp-action="DeleteOrderItem" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="sauce" class="text-muted"><i class="fas fa-times"></i></a>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <hr class="my-4">
+
+                                    <div class="pt-5">
+                                        <h6 class="mb-0">
+                                            <a asp-action="Menus" asp-controller="UserHome" class="text-body">
+                                                <i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop
+                                            </a>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 bg-grey">
+                                <div class="p-5">
+                                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                    <hr class="my-4">                                   
+
+                                    
+
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <h5 class="text-uppercase">Total price</h5>
+                                        <h5>$@ViewBag.TotalPrice</h5>
+                                    </div>
+
+                                    <a asp-action="SaveOrder" asp-controller="UserHome" class="btn btn-dark btn-block btn-lg"
+                                            data-mdb-ripple-color="dark">
+                                        Register
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

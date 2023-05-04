@@ -1,0 +1,58 @@
+﻿@using HamburgerMenuProject.Models.Entities;
+@model List<Sauce>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Sauce</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Photo
+            </th>
+            <th>
+                IsActive
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Created Time
+            </th>
+            <th>
+                Price
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Sauce item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="/images/@item.Photo" width="150" height="150" />
+                </td>
+                <td>
+                    @item.IsActive
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.CreatedTime.ToString("dd/MM/yyyyy")
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Update" asp-route-id="@item.ID">Update </a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID">Delete </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

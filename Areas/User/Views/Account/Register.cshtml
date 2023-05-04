@@ -1,0 +1,218 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+@using HamburgerMenuProject.Models.User;
+<script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+@model UserRegisterVM
+
+
+
+<section class="h-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card card-registration my-4">
+                    <div class="row g-0">
+                        <div class="col-xl-6 d-none d-xl-block">
+                            <img src="/images/register-image.jpg"
+                                 alt="Sample photo" class="img-fluid"
+                                 style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; width:100%; height:100%" />
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card-body p-md-5 text-black">
+                                <h3 class="mb-5 text-uppercase">Customer Registration</h3>
+
+                                <div class="row">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                    <form asp-action="Register" asp-controller="Account" method="post">
+                                        <div class="form-outline mb-4">
+                                            <div class="form-outline">
+                                                <input class="form-control" placeholder="Email" asp-for="Email" />
+                                                <span asp-validation-for="Email" class="text-danger"></span>
+                                            </div>
+                                        </div><div class="form-outline mb-4">
+                                            <div class="form-outline">
+                                                <input class="form-control" placeholder="User Name" asp-for="UserName" />
+                                                <span asp-validation-for="UserName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <div class="form-outline">
+                                                <input class="form-control" placeholder="First Name" asp-for="FirstName" />
+                                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <div class="form-outline">
+                                                <input class="form-control" placeholder="Last Name" asp-for="LastName" />
+                                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <div class="form-outline">
+                                                <input class="form-control" placeholder="Password" asp-for="Password" />
+                                                <span asp-validation-for="Password" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <div class="form-outline">
+                                                <input class="form-control" placeholder="Confirm Password" asp-for="ConfirmPassword" />
+                                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <div class="form-outline">
+                                                <input class="form-control" placeholder="Phone Number" asp-for="PhoneNumber" />
+                                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <input class="form-control" placeholder="Adress" asp-for="Address" />
+                                            <span asp-validation-for="Address" class="text-danger"></span>
+                                        </div>
+                                        <br />                                        
+                                        <div class="pt-1 mb-4">
+                                            <input type="submit" class="btn btn-dark btn-lg btn-block" value="Register" />
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                                @*<div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+
+                                    <h6 class="mb-0 me-4">Gender: </h6>
+
+                                    <div class="form-check form-check-inline mb-0 me-4">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                                               value="option1" />
+                                        <label class="form-check-label" for="femaleGender">Female</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline mb-0 me-4">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                                               value="option2" />
+                                        <label class="form-check-label" for="maleGender">Male</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline mb-0">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                                               value="option3" />
+                                        <label class="form-check-label" for="otherGender">Other</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+
+                                        <select class="select">
+                                            <option value="1">State</option>
+                                            <option value="2">Option 1</option>
+                                            <option value="3">Option 2</option>
+                                            <option value="4">Option 3</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <select class="select">
+                                            <option value="1">City</option>
+                                            <option value="2">Option 1</option>
+                                            <option value="3">Option 2</option>
+                                            <option value="4">Option 3</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example9" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example9">DOB</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example90" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example90">Pincode</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example99" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example99">Course</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example97" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example97">Email ID</label>
+                                </div>
+
+                                <div class="d-flex justify-content-end pt-3">
+                                    <button type="button" class="btn btn-light btn-lg">Reset all</button>
+                                    <button type="button" class="btn btn-warning btn-lg ms-2">Submit form</button>
+                                </div>*@
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+@*<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-action="Register" asp-controller="Account" method="post">
+            <div class="form-group">
+                <input class="form-control" placeholder="First Name" asp-for="FirstName" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input class="form-control" placeholder="Last Name" asp-for="LastName" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input class="form-control" placeholder="User Name" asp-for="UserName" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input class="form-control" placeholder="Password" asp-for="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input class="form-control" placeholder="Confirm Password" asp-for="ConfirmPassword" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input class="form-control" placeholder="Email" asp-for="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input class="form-control" placeholder="Phone Number" asp-for="PhoneNumber" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input class="form-control" placeholder="Adress" asp-for="Address" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <br />
+            <input type="submit" class="btn btn-primary" value="Register" />
+        </form>
+    </div>
+</div>*@
+

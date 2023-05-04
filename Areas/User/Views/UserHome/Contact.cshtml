@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+
+}
+@using (Html.BeginForm())
+{
+
+    <main id="main-container" class="main-container">
+        <div class="container-fluid">
+            <div class="row">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-5">
+                    <div class="contact-info-wrap gray-bg m-t-40">
+                        <div class="single-contact-info">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-info-dec">
+                                <a href="#">+92 334 7860477</a>
+                            </div>
+                        </div>
+                        <div class="single-contact-info">
+                            <div class="contact-icon">
+                                <i class="fas fa-globe-asia"></i>
+                            </div>
+                            <div class="contact-info-dec">
+                                <label>support@fakedonald.com</label>
+                            </div>
+                        </div>
+                        <div class="single-contact-info">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-info-dec">
+                                <span>Address goes here,</span>
+                                <span>street, Crossroad 123.</span>
+                            </div>
+                        </div>
+                        <div class="contact-social m-t-40">
+                            <h5>Follow Us</h5>
+                            <div class="social-link">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-youtube"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7">
+                    <div class="contact-form gray-bg m-t-40">
+                        <div class="section-content">
+                            <h5 class="section-content__title">Get In Touch</h5>
+
+                        </div>
+                        <div id="send-id">
+                            <form class="contact-form-style" id="contact-form">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-box__single-group">
+                                            <input class="form-control" placeholder="Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-box__single-group">
+                                            <input class="form-control" placeholder="Email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-box__single-group">
+                                            <input class="form-control" placeholder="Subject" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-box__single-group">
+                                            <input class="form-control" placeholder="Message" />
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <div class="pt-1 mb-4">
+                                            <input onclick="SendMessage()" class="btn btn-dark btn-lg btn-block" value="Send" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+}

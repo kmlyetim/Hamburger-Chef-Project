@@ -1,0 +1,331 @@
+﻿@using HamburgerMenuProject.Models;
+@model FoodListVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<style>
+    .product-grid {
+        background-color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+    }
+
+        .product-grid .product-image {
+            overflow: hidden;
+            position: relative;
+        }
+
+            .product-grid .product-image a.image {
+                display: block;
+            }
+
+            .product-grid .product-image img {
+                width: 230px;
+                height: 230px;
+            }
+
+            .product-grid .product-image .pic-1 {
+                transition: all 0.3s ease 0s;
+            }
+
+            .product-grid .product-image:hover .pic-1 {
+                transform: translateX(100%);
+            }
+
+            .product-grid .product-image .pic-2 {
+                width: 230px;
+                height: 230px;
+                transform: translateX(-100%);
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: all 0.3s ease 0s;
+            }
+
+            .product-grid .product-image:hover .pic-2 {
+                transform: translateX(0);
+            }
+
+        .product-grid .product-sale-label {
+            color: #fff;
+            background: #0a805e;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+
+        .product-grid .product-like-icon {
+            color: #696969;
+            font-size: 22px;
+            line-height: 20px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+            .product-grid .product-like-icon:hover {
+                color: #0a805e;
+            }
+
+            .product-grid .product-like-icon:before,
+            .product-grid .product-like-icon:after {
+                content: attr(data-tip);
+                color: #fff;
+                background-color: #000;
+                font-size: 12px;
+                line-height: 18px;
+                padding: 7px 7px 5px;
+                visibility: hidden;
+                position: absolute;
+                right: 0;
+                top: 15px;
+                transition: all 0.3s ease 0s;
+            }
+
+            .product-grid .product-like-icon:after {
+                content: '';
+                height: 15px;
+                width: 15px;
+                padding: 0;
+                transform: translateX(-50%) rotate(45deg);
+                right: auto;
+                left: 50%;
+                top: 15px;
+                z-index: -1;
+            }
+
+            .product-grid .product-like-icon:hover:before,
+            .product-grid .product-like-icon:hover:after {
+                visibility: visible;
+                top: 30px;
+            }
+
+        .product-grid .product-links {
+            width: 170px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            opacity: 0;
+            transform: translateX(-50%);
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transition: all 0.3s ease 0s;
+        }
+
+        .product-grid:hover .product-links {
+            bottom: 40px;
+            opacity: 1;
+        }
+
+        .product-grid .product-links li {
+            display: inline-block;
+            margin: 0 2px;
+        }
+
+            .product-grid .product-links li a {
+                color: #fff;
+                background: #000;
+                font-size: 16px;
+                line-height: 48px;
+                width: 48px;
+                height: 48px;
+                border-radius: 10px;
+                display: block;
+                transition: all 0.3s ease 0s;
+            }
+
+        .product-grid:hover .product-links li a:hover {
+            background: #333;
+        }
+
+        .product-grid .product-content {
+            text-align: left;
+            padding: 15px 0 0;
+        }
+
+        .product-grid .title {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: capitalize;
+            margin: 0 0 8px;
+        }
+
+            .product-grid .title a {
+                color: #333;
+                transition: all 0.3s ease 0s;
+            }
+
+                .product-grid .title a:hover {
+                    color: #0a805e;
+                }
+
+        .product-grid .price {
+            color: #0a805e;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+            .product-grid .price span {
+                color: #555;
+                font-size: 14px;
+                font-weight: 400;
+                text-decoration: line-through;
+                margin: 0 5px 0 0;
+            }
+
+</style>
+
+<div class="row">
+    @foreach (var item in Model.Menus)
+    {
+        if (item.IsActive)
+        {
+            <div style="padding:30px" class="col-md-3 col-sm-6">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a href="#" class="image">
+                            <img class="pic-1" src="/images/@item.Photo">
+                            <img class="pic-2" src="/images/@item.Photo">
+                        </a>
+                        <ul class="product-links">
+                            <li><a asp-action="AddShoppingCart" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="menu"><i class="fas fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">@item.Name</a></h3>
+                        <div class="price">$@item.Price</div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @foreach (var item in Model.Hamburgers)
+    {
+        if (item.IsActive)
+        {
+            <div style="padding:30px" class="col-md-3 col-sm-6">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a href="#" class="image">
+                            <img class="pic-1" src="/images/@item.Photo">
+                            <img class="pic-2" src="/images/@item.Photo">
+                        </a>
+                        <ul class="product-links">
+                            <li><a asp-action="AddShoppingCart" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="hamburger"><i class="fas fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">@item.Name</a></h3>
+                        <div class="price">$@item.Price</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+    @foreach (var item in Model.Desserts)
+    {
+        if (item.IsActive)
+        {
+            <div style="padding:30px" class="col-md-3 col-sm-6">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a href="#" class="image">
+                            <img class="pic-1" src="/images/@item.Photo">
+                            <img class="pic-2" src="/images/@item.Photo">
+                        </a>
+                        <ul class="product-links">
+                            <li><a asp-action="AddShoppingCart" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="dessert"><i class="fas fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">@item.Name</a></h3>
+                        <div class="price">$@item.Price</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+    @foreach (var item in Model.Drinks)
+    {
+        if (item.IsActive)
+        {
+            <div style="padding:30px" class="col-md-3 col-sm-6">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a href="#" class="image">
+                            <img class="pic-1" src="/images/@item.Photo">
+                            <img class="pic-2" src="/images/@item.Photo">
+                        </a>
+                        <ul class="product-links">
+                            <li><a asp-action="AddShoppingCart" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="drink"><i class="fas fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">@item.Name</a></h3>
+                        <div class="price">$@item.Price</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+    @foreach (var item in Model.Fries)
+    {
+        if (item.IsActive)
+        {
+            <div style="padding:30px" class="col-md-3 col-sm-6">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a href="#" class="image">
+                            <img class="pic-1" src="/images/@item.Photo">
+                            <img class="pic-2" src="/images/@item.Photo">
+                        </a>
+                        <ul class="product-links">
+                            <li><a asp-action="AddShoppingCart" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="fries"><i class="fas fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">@item.Name</a></h3>
+                        <div class="price">$@item.Price</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+    @foreach (var item in Model.Sauces)
+    {
+        if (item.IsActive)
+        {
+            <div style="padding:30px" class="col-md-3 col-sm-6">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a href="#" class="image">
+                            <img class="pic-1" src="/images/@item.Photo">
+                            <img class="pic-2" src="/images/@item.Photo">
+                        </a>
+                        <ul class="product-links">
+                            <li><a asp-action="AddShoppingCart" asp-controller="UserHome" asp-route-id="@item.ID" asp-route-name="sauce"><i class="fas fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">@item.Name</a></h3>
+                        <div class="price">$@item.Price</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+
+</div>

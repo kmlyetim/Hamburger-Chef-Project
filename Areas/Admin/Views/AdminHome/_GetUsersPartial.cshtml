@@ -1,0 +1,63 @@
+﻿@using HamburgerMenuProject.Models.User;
+@model List<AppUser>
+@{
+    var userList = ViewBag.UsersList;
+}
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Email
+            </th>
+            <th>
+                FirstName
+            </th>
+            <th>
+                LastName
+            </th>
+            <th>
+                Role
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (AppUser item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>     
+                    @if (item.Email!="admin@bilgeadam.com")
+                    {
+                        <p>User</p>                        
+                    }
+                    else
+                    {
+                        <p>Admin</p>
+                    }                    
+                </td>                
+                <td>
+                    @if (item.Email!="admin@bilgeadam.com")
+                    {
+                    <a class="btn btn-danger" type="GET" asp-controller="AdminHome" asp-action="Delete" asp-route-id="@item.Id">Delete </a>           
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
